@@ -1,5 +1,5 @@
 <template>
-  <div class="c-collection">
+  <div class="c-collection l-container">
     <Album v-for="(album, i) in music" :key="i" :album-data="album"/>
   </div>
 </template>
@@ -14,6 +14,9 @@ export default {
   components: {
     Album
   },
+  props: {
+    apiUrl: String
+  },
   data: function() {
     return {
       music: []
@@ -21,7 +24,7 @@ export default {
   },
   mounted: function() {
     axios
-      .get('https://flynn.boolean.careers/exercises/api/array/music')
+      .get(this.apiUrl)
       .then((response) => {
         this.music.push(...response.data.response);
       })
@@ -34,5 +37,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.c-collection {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 1rem;
+  row-gap: 2rem;
+}
 </style>

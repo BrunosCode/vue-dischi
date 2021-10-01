@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <Collection/>
+    <Collection :api-url="api"/>
   </div>
 </template>
 
@@ -14,20 +14,21 @@ export default {
   components: {
     Header,
     Collection
+  },
+  data: function() {
+    return {
+      api: 'https://flynn.boolean.careers/exercises/api/array/music'
+    }
   }
 }
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+@import "./assets/style/common.scss";
 
 #app {
   font-family: 'Roboto', sans-serif;
+  background-color: $primary-bg;
+  min-height: 100vh;
 }
 </style>
