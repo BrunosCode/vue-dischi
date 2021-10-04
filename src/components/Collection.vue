@@ -1,6 +1,6 @@
 <template>
   <div class="c-collection l-container">
-    <Album v-for="(album, i) in music" :key="i" :album-data="album"/>
+    <Album v-for="(album, i) in filteredCollection" :key="i" :album-data="album"/>
   </div>
 </template>
 
@@ -15,22 +15,28 @@ export default {
     Album
   },
   props: {
-    apiUrl: String
+    apiUrl: String,
+    collectionFilter: String
   },
   data: function() {
     return {
-      music: []
+      collection: []
     }
   },
-  mounted: function() {
+  created: function() {
     axios
       .get(this.apiUrl)
       .then((response) => {
-        this.music.push(...response.data.response);
+        this.collection.push(...response.data.response);
       })
       .catch((error) => {
         console.log(error);
       });
+  },
+  computed: {
+    filteredCollection: function() {
+      return this.collection.filter(album => album.genre.includes(this.collectionFilter));
+    },
   }
   
 }

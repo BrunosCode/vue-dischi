@@ -1,7 +1,7 @@
 <template>
   <select v-model="filterValue" @change="emitFilter"
   class="c-filter" name="filter" id="filter" placeholder>
-    <option value="" disabled selected>Select your option</option>
+    <option value="" selected>All</option>
     <option value="Rock">Rock</option>
     <option value="Metal">Metal</option>
     <option value="Jazz">Jazz</option>
@@ -18,12 +18,10 @@ export default {
     }
   },
   methods: {
+    // Method passing the filter to the parent
     emitFilter: function() {
       this.$emit("filter-value", this.filterValue);
     }
-  },
-  mounted() {
-    console.log("filter" + this.filterValue);
   }  
 }
 </script>

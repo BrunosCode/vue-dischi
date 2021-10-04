@@ -1,7 +1,10 @@
 <template>
   <div class="c-header">
     <img class="c-header__logo" src="../assets/images/spotify-logo.png" alt="Logo Spotify">
-    <FilterItem @filter-value="emitFilter"/>  
+    <label>
+      <span class="c-header__label">Filter Genres</span>
+      <FilterItem @filter-value="emitFilter"/>  
+    </label>
   </div>
 </template>
 
@@ -14,6 +17,7 @@ export default {
     FilterItem
   },
   methods: {
+    // Method passing the filter to the parent
     emitFilter: function(string) {
       this.$emit("filter-value", string);
     }
@@ -34,6 +38,11 @@ export default {
 
   &__logo {
     height: 3rem;
+  }
+
+  &__label {
+    color: $primary-text;
+    margin-right: .75rem;
   }
 }
 </style>

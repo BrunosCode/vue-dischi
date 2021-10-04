@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @filter-value="saveFilter"/>
-    <Collection :api-url="api"/>
+    <Collection :api-url="api" :collection-filter="filterValue"/>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
     }
   },
   methods: {
+    // Storing the filter
     saveFilter: function(string) {
       this.filterValue = string;
     }
