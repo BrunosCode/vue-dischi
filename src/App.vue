@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header @filter-value="saveFilter"/>
     <Collection :api-url="api"/>
   </div>
 </template>
@@ -17,9 +17,15 @@ export default {
   },
   data: function() {
     return {
-      api: 'https://flynn.boolean.careers/exercises/api/array/music'
+      api: 'https://flynn.boolean.careers/exercises/api/array/music',
+      filterValue: ""
     }
-  }
+  },
+  methods: {
+    saveFilter: function(string) {
+      this.filterValue = string;
+    }
+  },
 }
 </script>
 
