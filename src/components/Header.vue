@@ -1,9 +1,17 @@
 <template>
   <div class="c-header">
     <img class="c-header__logo" src="../assets/images/spotify-logo.png" alt="Logo Spotify">
-    <label>
+    <label class="c-header__input">
       <span class="c-header__label">Filter Genres</span>
-      <FilterItem @filter-value="emitFilter"/>  
+      <FilterItem @filter-value="emitGenresFilter" :options-list="filterLists.collectionGenres"/>  
+    </label>
+    <label class="c-header__input">
+      <span class="c-header__label">Filter Authors</span>
+      <FilterItem @filter-value="emitAuthorsFilter" :options-list="filterLists.collectionAuthors"/>  
+    </label>
+    <label class="c-header__input">
+      <span class="c-header__label">Filter Years</span>
+      <FilterItem @filter-value="emitYearsFilter" :options-list="filterLists.collectionYears"/>  
     </label>
   </div>
 </template>
@@ -16,10 +24,21 @@ export default {
   components: {
     FilterItem
   },
+  props: {
+    filterLists: Object
+  },
   methods: {
     // Method passing the filter to the parent
-    emitFilter: function(string) {
-      this.$emit("filter-value", string);
+    emitGenresFilter: function(string) {
+      this.$emit("genres-filter", string);
+    },
+    // Method passing the filter to the parent
+    emitAuthorsFilter: function(string) {
+      this.$emit("authors-filter", string);
+    },
+    // Method passing the filter to the parent
+    emitYearsFilter: function(string) {
+      this.$emit("years-filter", string);
     }
   }
 }
@@ -33,11 +52,16 @@ export default {
   padding: 1rem;
   background-color: $secondary-bg;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
   &__logo {
     height: 3rem;
+    margin-right: auto;
+  }
+
+  &__input {
+    margin-right: 2rem;
   }
 
   &__label {

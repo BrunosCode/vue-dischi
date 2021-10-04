@@ -2,10 +2,8 @@
   <select v-model="filterValue" @change="emitFilter"
   class="c-filter" name="filter" id="filter" placeholder>
     <option value="" selected>All</option>
-    <option value="Rock">Rock</option>
-    <option value="Metal">Metal</option>
-    <option value="Jazz">Jazz</option>
-    <option value="Pop">Pop</option>
+    <option v-for="(option, i) in optionsList" :key="i" 
+    :value="option">{{option}}</option>
   </select>
 </template>
 
@@ -16,6 +14,9 @@ export default {
     return {
       filterValue: "",
     }
+  },
+  props: {
+    optionsList: Set
   },
   methods: {
     // Method passing the filter to the parent
